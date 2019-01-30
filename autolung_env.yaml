@@ -66,7 +66,7 @@ dependencies:
   - wrapt=1.11.0
   - pip:
     - dask==1.1.0
-    - Gooey
+    - Gooey==1.0.2
     - psutil==5.5.0
     - wxpython==4.0.4
 prefix: D:\Anaconda\envs\autolung

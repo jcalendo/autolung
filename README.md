@@ -16,7 +16,7 @@ In the future, I would like to make this a standalone application using Qt and p
 
 The main window should appear.
 
-![Main_Window](docs/images/main_window.jpg)
+![Main_Window](docs/images/main_window.JPG)
 
 - **images**: Browse to the folder where your images are saved. *NOTE:* All images should be in .tif format. (This can be changed by editing the `ext` list in the `autolung.load_images.collect()` function). I have only tested .tif files but there should be no reason other formats shouldn't work.
 - **output_path**: The program generates an Excel file of the mesurement results. Select the path where you want the results saved to.

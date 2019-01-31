@@ -100,7 +100,7 @@ def measure_all(labeled_img, **kwargs):
     data = {"Image_Width(um)": width, "Image_Height(um)" : height, "Obj_Num" : obj_num, 
         "Mean_Area(sq_um)" : mean_area, "Mean_Dia(um)" : mean_dia,
         "Mean_Per(um)" : mean_per, "Total_Airspace_Area(sq_um)" : air_area, 
-        "Total_Tissue_Area(sq_um)" : tissue_area, "EXP" : exp, "D0" : D0, "D1" : D1, "D2" : D2,
+        "Total_Tissue_Area(sq_um)" : tissue_area, "EXP" : exp, "Lm(um)": m, "D0" : D0, "D1" : D1, "D2" : D2,
         "Stdev_Area(sq_um)" : stdev_area}
         
     return data

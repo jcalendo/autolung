@@ -22,13 +22,13 @@ def process_dataset(images, preview, **parameters):
     for img in images:
         print("Processing {}...".format(img))
         p = process(img, preview, **parameters)
-        print("Done.")
+        print("Done.\n")
         print("Measuring airspace statistics on {}...".format(img))
         d = measure_all(p, **parameters)
-        print("Done.")
+        print("Done.\n")
         print("Extracting metadata from {}...".format(img))
         md = extract_metadata(img, **parameters)
-        print("Done.")
+        print("Done.\n")
 
         results = {**md, **d}
         data.append(results)

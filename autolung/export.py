@@ -20,12 +20,12 @@ def group_and_summarize(data_list):
         print("Raw data could not be sorted - ignoring group operation")
 
     # Rearrange order of columns
-    raw_df = raw_df[["Animal_id", "Location", "Img_num", "Species", "Magnification", "Fixed_Field",  "Scale(px/um)", 
+    raw_df = raw_df[["FileName", "Animal_id", "Location", "Img_num", "Species", "Magnification", "Fixed_Field",  "Scale(px/um)", 
                     "Image_Width(um)", "Image_Height(um)","Obj_Num", "Mean_Area(sq_um)", "Stdev_Area(sq_um)", "Mean_Dia(um)", 
-                    "Mean_Per(um)", "Total_Airspace_Area(sq_um)", "Total_Tissue_Area(sq_um)", "EXP", "D0", "D1", "D2"]]
+                    "Mean_Per(um)", "Total_Airspace_Area(sq_um)", "Total_Tissue_Area(sq_um)", "EXP", "Lm(um)", "D0", "D1", "D2"]]
     grouped_df = grouped_df[["Animal_id", "Location", "Img_num", "Species", "Magnification", "Fixed_Field",  "Scale(px/um)", 
                     "Image_Width(um)", "Image_Height(um)","Obj_Num", "Mean_Area(sq_um)", "Stdev_Area(sq_um)", "Mean_Dia(um)", 
-                    "Mean_Per(um)", "Total_Airspace_Area(sq_um)", "Total_Tissue_Area(sq_um)", "EXP", "D0", "D1", "D2"]]
+                    "Mean_Per(um)", "Total_Airspace_Area(sq_um)", "Total_Tissue_Area(sq_um)", "EXP", "Lm(um)", "D0", "D1", "D2"]]
         
     return raw_df, grouped_df
 
@@ -33,6 +33,7 @@ def group_and_summarize(data_list):
 def write_output(data_list, output_path):
     """Write the Dataframes to an Excel File"""
     print("Writing results to {}".format(output_path))
+    print("#" * 80)
     df1, df2 = group_and_summarize(data_list)
 
     timestr = time.strftime("%Y%m%d-%H%M%S")

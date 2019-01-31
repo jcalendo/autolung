@@ -77,12 +77,13 @@ def extract_metadata(fpath, **kwargs):
         field = kwargs.get('fixed_field')
         scale = kwargs.get('scale')
 
-        md_dict = {"Animal_id" : animal_id,
-                    "Location" : location,
-                    "Img_num" : img_num,
-                    "Species" : species,
-                    "Magnification" : mag,
-                    "Fixed_Field" : field,
-                    "Scale(px/um)" : scale}
+        md_dict = {"FileName" : fname,
+                   "Animal_id" : animal_id,
+                   "Location" : location,
+                   "Img_num" : img_num,
+                   "Species" : species,
+                   "Magnification" : mag,
+                   "Fixed_Field" : field,
+                   "Scale(px/um)" : scale}
         
         return md_dict

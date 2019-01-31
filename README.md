@@ -16,7 +16,7 @@ In the future, I would like to make this a standalone application using Qt and p
 
 The main window should appear.
 
-![Main_Window](docs/images/main_window.JPG)
+![Main_Window](docs/images/main_window.jpg)
 
 - **images**: Browse to the folder where your images are saved. *NOTE:* All images should be in .tif format. (This can be changed by editing the `ext` list in the `autolung.load_images.collect()` function). I have only tested .tif files but there should be no reason other formats shouldn't work.
 - **output_path**: The program generates an Excel file of the mesurement results. Select the path where you want the results saved to.
@@ -76,3 +76,13 @@ The columns (variables) are as follows:
 - EXP: expansion index (Airspace_Area:Tissue_Area) * 100
 - Lm(um): Mean Linear Intercept estimate given in micrometers.
 - D0, D1, D2: weighted measurements of the equivalent diameters. See above references for details.
+
+### Example of output
+
+First sheet, all images.
+
+![Sheet_1](docs/images/sheet_1.JPG)
+
+Second Sheet. Note the items rows are now grouped.
+
+![Sheet_2](docs\images\sheet_2.JPG)

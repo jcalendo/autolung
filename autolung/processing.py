@@ -67,12 +67,17 @@ def preview_process(grey, thresh, filled, labeled):
 
 def process(img, preview, **kwargs):
     """Perform the processing pipeline. Return the filled image."""
+    print("Converting image to Grayscale...")
     grey = convert_to_grey(img)
+    print("Thresholding (this make take a while for large images/block_sizes)...")
     binary = binarize(grey, **kwargs)
+    print("Performing morphology operations...")
     filled = fill_holes(binary, **kwargs)
+    print("Performing connected components labeling...")
     labeled = label_image(filled)
 
     if preview == "Yes":
+        print("Open Preview - Exit preview window to continue")
         preview_process(grey, binary, filled, labeled)
     else:
         pass

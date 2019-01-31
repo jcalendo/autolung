@@ -49,7 +49,7 @@ def expansion(labeled_img):
     exp =  airspace_area / tissue_area * 100
 
     Expansion_Index = namedtuple("Expansion_Index", ['width', 'height', 'airspace_area', 'tissue_area', 'exp'])
-    e = Expansion_Index(x, y, airspace_area, tissue_area, exp) 
+    e = Expansion_Index(y, x, airspace_area, tissue_area, exp) 
     
     return e 
 
@@ -92,6 +92,7 @@ def measure_all(labeled_img, **kwargs):
     air_area = e.airspace_area * sq_um
     tissue_area = e.tissue_area * sq_um
     exp = e.exp
+    lm = m * um
     D0 = d.D0 * um
     D1 = d.D1 * um
     D2 = d.D2 * um
@@ -100,7 +101,7 @@ def measure_all(labeled_img, **kwargs):
     data = {"Image_Width(um)": width, "Image_Height(um)" : height, "Obj_Num" : obj_num, 
         "Mean_Area(sq_um)" : mean_area, "Mean_Dia(um)" : mean_dia,
         "Mean_Per(um)" : mean_per, "Total_Airspace_Area(sq_um)" : air_area, 
-        "Total_Tissue_Area(sq_um)" : tissue_area, "EXP" : exp, "Lm(um)": m, "D0" : D0, "D1" : D1, "D2" : D2,
+        "Total_Tissue_Area(sq_um)" : tissue_area, "EXP" : exp, "Lm(um)": lm, "D0" : D0, "D1" : D1, "D2" : D2,
         "Stdev_Area(sq_um)" : stdev_area}
         
     return data

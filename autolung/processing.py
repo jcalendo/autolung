@@ -6,6 +6,7 @@ from skimage.color import rgb2gray
 from skimage.filters import threshold_local
 from skimage.morphology import remove_small_holes, remove_small_objects, label
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def convert_to_grey(img):
@@ -44,11 +45,16 @@ def label_image(filled_binary_img):
 def preview_process(grey, thresh, filled, labeled):
     """If the preview option is selected show a four panel display of the
     processed images"""
+    # Create mask for the labeled image
+    l = np.ma.masked_where(labeled < 0.05, labeled)
+    cmap_l = plt.cm.prism
+    cmap_l.set_bad(color = 'black')
+
     _, axarr = plt.subplots(2,2)
     axarr[0, 0].imshow(grey, cmap='gray')
     axarr[0, 1].imshow(thresh, cmap='gray')
     axarr[1, 0].imshow(filled, cmap='gray')
-    axarr[1, 1].imshow(labeled, cmap='gist_ncar')
+    axarr[1, 1].imshow(l, interpolation='none', cmap=cmap_l)
 
     axarr[0, 0].set_title('Gray Scale Image')
     axarr[0, 1].set_title('Thresholded Image')

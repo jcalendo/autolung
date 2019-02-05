@@ -5,6 +5,7 @@ from skimage import io
 from skimage.color import rgb2gray
 from skimage.filters import threshold_local
 from skimage.morphology import remove_small_holes, remove_small_objects, label
+from skimage.exposure import equalize_adapthist
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -12,8 +13,13 @@ import numpy as np
 def convert_to_grey(img):
     """Convert the original RGB image to a greyscale image."""
     orig = io.imread(img)
-    gray = rgb2gray(orig)
-    return gray
+    grey = rgb2gray(orig)
+    return grey
+
+
+def enhance_contrast(grey_img):
+    """enhance the contrast of the greyscale image using CLAHE"""
+    return equalize_adapthist(grey_img)
 
 
 def binarize(grey_img, **kwargs):
@@ -69,8 +75,10 @@ def process(img, preview, **kwargs):
     """Perform the processing pipeline. Return the filled image."""
     print("Converting image to Grayscale...")
     grey = convert_to_grey(img)
+    print("Enhancing contrast...")
+    grey_scaled = enhance_contrast(grey)
     print("Thresholding (this make take a while for large images/block_sizes)...")
-    binary = binarize(grey, **kwargs)
+    binary = binarize(grey_scaled, **kwargs)
     print("Performing morphology operations...")
     filled = fill_holes(binary, **kwargs)
     print("Performing connected components labeling...")
@@ -78,7 +86,7 @@ def process(img, preview, **kwargs):
 
     if preview == "Yes":
         print("Open Preview - Exit preview window to continue")
-        preview_process(grey, binary, filled, labeled)
+        preview_process(grey_scaled, binary, filled, labeled)
     else:
         pass
 

@@ -64,6 +64,7 @@ dependencies:
   - qt=5.9.7
   - scipy=1.2.0
   - wrapt=1.11.0
+  - xlsxwriter=1.1.6
   - pip:
     - dask==1.1.0
     - Gooey==1.0.2

@@ -19,7 +19,9 @@ from export import write_output
 def process_dataset(images, preview, **parameters):
     """Process all images in the dataset. return list of dictionaries containing the data"""
     data = []
-    for img in images:
+    num_images = len(images)
+    for i, img in enumerate(images, start=1):
+        print("Processing image {}/{}...".format(i, num_images))
         print("Processing {}...".format(img))
         p = process(img, preview, **parameters)
         print("Done.\n")

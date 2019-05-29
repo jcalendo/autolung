@@ -85,4 +85,4 @@ First sheet, all images.
 
 Second Sheet. Note the items rows are now grouped.
 
-![Sheet_2](docs\images\sheet_2.JPG)
+![Sheet_2](docs/images/sheet_2.JPG)

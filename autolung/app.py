@@ -40,7 +40,7 @@ def process_dataset(images, preview, **parameters):
 
 @Gooey(program_name="autolung", default_size=(700, 530))
 def main():
-    parser = GooeyParser(description="Perform automated lung image analysis. Written by Gennaro Calendo")
+    parser = GooeyParser(description="Perform automated lung image analysis.\nWritten by Gennaro Calendo for the Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine\nTemple University, 2019")
     parser.add_argument("images", help="path to the directory of images to be analyzed", widget='DirChooser')
     parser.add_argument("output_path", help="path the where you want to save the output file", widget="DirChooser")
     parser.add_argument("config_file", help="The configuration file for this image set", widget="FileChooser")

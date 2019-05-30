@@ -2,7 +2,7 @@
 
 (c) 2019 Gennaro Calendo, Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine at Temple University
 
-This script attempts to group and write the data collected by the processing to an Excel file 
+Collects metadata and measurements and writes to Excel.
 """
 import pandas as pd
 import time

@@ -2,7 +2,7 @@
 
 (c) 2019 Gennaro Calendo, Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine at Temple University
 
-Controls the main app and gui for the autloung program
+Controls the main app and gui
 """
 from gooey import Gooey
 from gooey import GooeyParser

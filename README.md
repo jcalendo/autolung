@@ -1,6 +1,8 @@
 # Autolung
 
-Perform automated lung image morphometry using Python. Written by Gennaro Calendo for the Laboratory of Marla R. Wolfson, MS, PhD at  the Lewis Katz School of Medicine Temple University, Philadelphia, PA, 2019.
+(c) 2019 Gennaro Calendo, Marla R. Wolfson, MS, PhD, Laboratory of Marla R. Wolfson, MS, PhD at the Lewis Katz School of Medicine Temple University, Philadelphia, PA.
+
+Perform automated lung image morphometry using Python. 
 
 The image processing steps used in this program were derived from [Muñoz-Barrutia, et al., (2012)](https://www.ncbi.nlm.nih.gov/pubmed/23197972), [Jacob et al., (2009)](https://www.ncbi.nlm.nih.gov/pubmed/19688093), [Parameswaran et al., (2006)](https://www.ncbi.nlm.nih.gov/pubmed/16166240), and [Salon et al., (2015)](https://www.ncbi.nlm.nih.gov/pubmed/25695836).
 

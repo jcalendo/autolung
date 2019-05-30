@@ -27,7 +27,7 @@ The main window should appear.
 
 ## Configuration Files
 
-All of the analysis steps are dependant on the configuration file being set up properly. The configuration files are simple text files that are easy to edit and understand, hopefully making this program extensible to other image sets. The config files only have three sections and only *really* 5 values that must be set correctly. Config files look like this:
+All of the analysis steps are dependent on the configuration file being set up properly. The configuration files are simple text files that are easy to edit and understand, hopefully making this program extensible to other image sets. The config files only have three sections and only *really* 5 values that must be set correctly. Config files look like this:
 
 ```
 [Image_Metadata]

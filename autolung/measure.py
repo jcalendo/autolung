@@ -1,5 +1,8 @@
-"""
-This script will control the mesurement of the airspaces in labelled binary images
+"""Measure Airspace Parameters
+
+(c) 2019 Gennaro Calendo, Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine at Temple University
+
+Main 'measurements' file. Controls all measurements performed on a given image. 
 """
 import numpy as np
 from scipy import stats
@@ -8,7 +11,18 @@ from skimage.measure import regionprops
 
 
 def airspace_properties(labeled_img):
-    """Get area, perimeter, diameter mesurements for all airspaces in an image"""
+    """Return the properties of the airspaces.
+
+    Measures the areas, perimeters, equivalent diameters of airspaces, and 
+    the number of airspaces in a given image. measurements are returned in
+    pixels.
+    
+    Arguments:
+        labeled_img {np.array} -- binary image, uint16 numpy array
+    
+    Returns:
+        [named tuple] -- area, perimeter, equivalent diameter, and number of objects
+    """
     props = regionprops(labeled_img)
     
     areas = [p.area for p in props]
@@ -23,8 +37,17 @@ def airspace_properties(labeled_img):
 
 
 def mli(labeled_img):
-    """Calculate the Mean linear intercept by raster scanning the image and determining the length
-    of unbroken stretches of airspace"""
+    """Calculates the Mean Linear Intercept
+    
+    Calculates the Mean Linear Intercept (mli) by raster scanning the image and 
+    returning a list of the lengths of unbroken 'airspace' segments
+
+    Arguments:
+        labeled_img {np.array} -- binary image, uint16 numpy array
+    
+    Returns:
+        float -- length of Mean linear intercept in pixels
+    """
     # get length of consecutive stretches of white pixels per row
     intercepts = []
     for row in labeled_img:
@@ -34,11 +57,20 @@ def mli(labeled_img):
 
     mli = np.mean(intercepts)
     
-    return mli 
+    return mli
 
 
 def expansion(labeled_img):
-    """calculate the EXP index of the image"""
+    """Calculate the Expansion Index
+
+    Ratio of the total area of the airspaces : total area of the tissue
+    
+    Arguments:
+        labeled_img {np.array} -- binary image, uint16 numpy array
+    
+    Returns:
+        float -- estimate of the Expansion Index
+    """
     # calculate the shape of the image and then the total area in pixels
     x, y = labeled_img.shape
     total_area = x * y
@@ -55,7 +87,18 @@ def expansion(labeled_img):
 
 
 def d_indeces(dia_ar):
-    """Return the D Indeces calculated from the equivalent diameter measurements"""
+    """Calculate the D indeces from the equivalent diameter measurements
+
+    Return weighted measurements for the equivalent diameters - a measure of heterogeneity.
+    For a full treatment of how D indeces are calculated see:
+        Parameswaran, 2006. Quantitative characterization of airspace enlargement in emphysema.
+    
+    Arguments:
+        dia_ar {numpy array} -- numpy array of equivalent diameter measurements for all airspaces in an image
+    
+    Returns:
+        tuple -- D0, D1, and D2 index
+    """
     D0 = np.mean(dia_ar) 
     D0_var = np.var(dia_ar)
     D0_skew = stats.skew(dia_ar)
@@ -70,8 +113,14 @@ def d_indeces(dia_ar):
 
 
 def measure_all(labeled_img, **kwargs):
-    """Combine all measurement functions into a single call and return stats
-    in calibrated units"""
+    """Call all measurement functions and return data in calibrated units
+    
+    Arguments:
+        labeled_img {np.array} -- binary image, uint16 numpy array
+    
+    Returns:
+        dict -- all measurements for a given image
+    """
     # scale of images is in pixels / um
     scale = kwargs.get('scale')
     um = 1 / scale

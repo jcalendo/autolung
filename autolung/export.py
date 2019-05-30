@@ -1,6 +1,8 @@
-"""
-This script attempts to group and write the data collected by the processing
-to an excel file 
+"""Writes data to Excel spreadsheet
+
+(c) 2019 Gennaro Calendo, Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine at Temple University
+
+This script attempts to group and write the data collected by the processing to an Excel file 
 """
 import pandas as pd
 import time
@@ -8,7 +10,14 @@ import os
 
 
 def group_and_summarize(data_list):
-    """Group and summarize the results DataFrame"""
+    """Groups and summarizes the data
+    
+    Arguments:
+        data_list {list} -- list of the data returned from image processing
+    
+    Returns:
+        [tuple] -- (raw data collected from each image, grouped data based on image metadata)
+    """
     raw_df = pd.DataFrame(data_list)
     grouped_df = raw_df.groupby(['Animal_id', 'Location', 'Species', 'Magnification', 'Fixed_Field']).mean().reset_index()
 
@@ -31,7 +40,12 @@ def group_and_summarize(data_list):
 
 
 def write_output(data_list, output_path):
-    """Write the Dataframes to an Excel File"""
+    """Writes DataFrames to Excel file
+    
+    Arguments:
+        data_list {list} -- list of the data returned from image processing
+        output_path {str} -- path to write Excel file
+    """
     print("Writing results to {}".format(output_path))
     print("#" * 80)
     df1, df2 = group_and_summarize(data_list)

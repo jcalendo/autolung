@@ -1,33 +1,24 @@
-"""
-this script will extract metadat from the configuration file and the image filename
-and then return that data as a dictionary to be incorporated into the final results
-spreadsheet
+"""Extract metadata information from image filenames
+
+(c) 2019 Gennaro Calendo, Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine at Temple University
+
+Collect metadata information from the image filenames and config file. 
+
+NOTE: filename format is specific to our lab and follows the convention "[Animal_ID]-[Location]-[Image_Number].tif"
 """
 import os
 import numpy as np
 
 
-def collect_images(input_dir):
-    """iterate through the input directory and collect image files into a list.
-    return the list for processing if files exist"""
-
-    # create empty list for images that wil be processed
-    to_process = []
-
-    # define allowed extensions
-    ext = [".tif"]
-
-    for file in os.listdir(input_dir):
-        if file.endswith(tuple(ext)):
-            to_process.append(os.path.join(input_dir, file))
-        else:
-            print("{} is not compatible for image processing. Must be .tif".format(file))
-
-    return to_process
-
-
 def get_id(fname):
-    """Extract the first field (animal_id) from the file name"""
+    """Extract the first field (animal_id) from the file name
+    
+    Arguments:
+        fname {str} --  image filename
+    
+    Returns:
+        str -- first field of the file name
+    """
     try:
         animal_id = fname.split('-')[0].strip()
     except:
@@ -39,7 +30,14 @@ def get_id(fname):
 
 
 def get_location(fname):
-    """Extract the second field (location) from the file name"""
+    """Extract the second field (location) from the file name
+    
+    Arguments:
+        fname {str} -- image filename
+    
+    Returns:
+        str -- second field of the file name
+    """
     try:
         location = fname.split('-')[1].strip()
     except:
@@ -51,7 +49,14 @@ def get_location(fname):
 
 
 def get_img_num(fname):
-    """Extract the third field (image number) from the file name"""
+    """Extract the third field (image number) from the file name
+    
+    Arguments:
+        fname {str} -- image filename
+    
+    Returns:
+        str -- third field of the file name
+    """
     try:
         img_num = int(fname.split('-')[2][:-4])
     except:
@@ -63,9 +68,13 @@ def get_img_num(fname):
 
 
 def extract_metadata(fpath, **kwargs):
-        """Parse the fpath to the image to obtain information about the animal
+        """Combine all above functions to extract metadata from file name
         
-        Files should be named in a standard format (specific to our lab)
+        Arguments:
+            fpath {str} -- image file name
+        
+        Returns:
+            dict -- dict of image file metadata extracted from file name
         """
         fname = os.path.basename(fpath)
 

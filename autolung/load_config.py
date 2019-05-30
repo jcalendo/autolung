@@ -1,12 +1,19 @@
-"""
-Use configparser to read settings configuration settings that will be
-passed onto the LungImage Class for processing.
+"""Read settings and Metadata from Config file
+
+(c) 2019 Gennaro Calendo, Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine at Temple University
 """
 import configparser
 
 
 def load_settings(config_file):
-    """Load autolung configuration settings using the specified file path and return the contents"""
+    """Read contents of config file and pass on as settings for image processing
+    
+    Arguments:
+        config_file {str} -- path to config file
+    
+    Returns:
+        dict -- image metadata from config file
+    """
     config = configparser.ConfigParser()
     
     try:

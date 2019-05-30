@@ -1,5 +1,8 @@
-"""
-This file will control the main program and GUI
+"""Main app and GUI
+
+(c) 2019 Gennaro Calendo, Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine at Temple University
+
+Controls the main app and gui for the autloung program
 """
 from gooey import Gooey
 from gooey import GooeyParser
@@ -17,7 +20,15 @@ from export import write_output
 
 
 def process_dataset(images, preview, **parameters):
-    """Process all images in the dataset. return list of dictionaries containing the data"""
+    """Perform processing steps on all images
+    
+    Arguments:
+        images {list} -- list of image paths to be processed
+        preview {str} -- "Yes" or "No" choice to preview processing steps
+    
+    Returns:
+        list -- list of the associated data (dictionaries) for each image
+    """
     data = []
     num_images = len(images)
     for i, img in enumerate(images, start=1):

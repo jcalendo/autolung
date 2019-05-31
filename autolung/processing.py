@@ -17,6 +17,10 @@ from skimage.morphology import remove_small_holes, remove_small_objects, label
 from skimage.exposure import equalize_adapthist
 import matplotlib.pyplot as plt
 import numpy as np
+from pathlib import Path
+
+from measure import measure_all
+from metadata import extract_metadata
 
 
 def convert_to_grey(img):
@@ -126,7 +130,7 @@ def preview_process(grey, thresh, filled, labeled):
     plt.show()
 
 
-def process(img, preview, **kwargs):
+def process_img(img, preview, **kwargs):
     """Perform all pre-processing functions on a given image. 
 
     The final labelled image is used as input for the measurements module.
@@ -156,3 +160,35 @@ def process(img, preview, **kwargs):
         pass
 
     return labeled
+
+
+def process_all(images, preview, **parameters):
+    """Perform processing steps on all images
+    
+    Arguments:
+        images {list} -- list of image paths to be processed
+        preview {str} -- "Yes" or "No" choice to preview processing steps
+    
+    Returns:
+        list -- list of the associated data (dictionaries) for each image
+    """
+    data = []
+    num_images = len(images)
+    for i, img in enumerate(images, start=1):
+        img_name = Path(img).name
+
+        print(f"Processing image {i}/{num_images}...")
+        print(f"Processing {img_name}...")
+        p = process_img(img, preview, **parameters)
+        print("Done.\n")
+        print(f"Measuring airspace statistics on {img_name}...")
+        d = measure_all(p, **parameters)
+        print("Done.\n")
+        print(f"Extracting metadata from {img_name}...")
+        md = extract_metadata(img, **parameters)
+        print("Done.\n")
+
+        results = {**md, **d}
+        data.append(results)
+
+    return data

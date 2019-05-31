@@ -4,6 +4,7 @@
 
 Controls the main app and gui for the autloung program
 """
+from pathlib import Path
 from gooey import Gooey
 from gooey import GooeyParser
 
@@ -28,14 +29,16 @@ def process_dataset(images, preview, **parameters):
     data = []
     num_images = len(images)
     for i, img in enumerate(images, start=1):
+        img_name = Path(img).name
+
         print(f"Processing image {i}/{num_images}...")
-        print(f"Processing {img}...")
+        print(f"Processing {img_name}...")
         p = process(img, preview, **parameters)
         print("Done.\n")
-        print(f"Measuring airspace statistics on {img}...")
+        print(f"Measuring airspace statistics on {img_name}...")
         d = measure_all(p, **parameters)
         print("Done.\n")
-        print(f"Extracting metadata from {img}...")
+        print(f"Extracting metadata from {img_name}...")
         md = extract_metadata(img, **parameters)
         print("Done.\n")
 

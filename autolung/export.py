@@ -46,7 +46,7 @@ def write_output(data_list, output_path):
         data_list {list} -- list of the data returned from image processing
         output_path {str} -- path to write Excel file
     """
-    print("Writing results to {}".format(output_path))
+    print(f"Writing results to {output_path}")
     print("#" * 80)
     df1, df2 = group_and_summarize(data_list)
 

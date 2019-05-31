@@ -22,7 +22,7 @@ def get_id(fname):
     try:
         animal_id = fname.split('-')[0].strip()
     except:
-        print("ERROR: Could not extract animal_ID from {}".format(fname))
+        print(f"ERROR: Could not extract animal_ID from {fname}")
         print("animal_ID set to 'NaN in output")
         animal_id = np.nan
     
@@ -41,7 +41,7 @@ def get_location(fname):
     try:
         location = fname.split('-')[1].strip()
     except:
-        print("ERROR: Could not extract location from {}".format(fname))
+        print(f"ERROR: Could not extract location from {fname}")
         print("location set to 'NaN' in output")
         location = np.nan
     
@@ -60,7 +60,7 @@ def get_img_num(fname):
     try:
         img_num = int(fname.split('-')[2][:-4])
     except:
-        print("ERROR: Could not extract img_num from {}".format(fname))
+        print(f"ERROR: Could not extract img_num from {fname}")
         print("img_num set to 'NaN' in output")
         img_num = np.nan
     

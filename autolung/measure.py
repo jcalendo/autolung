@@ -21,7 +21,7 @@ def airspace_properties(labeled_img):
         labeled_img {np.array} -- binary image, uint16 numpy array
     
     Returns:
-        named tuple -- area, perimeter, equivalent diameter, and number of objects
+        [named tuple] -- area, perimeter, equivalent diameter, and number of objects
     """
     props = regionprops(labeled_img)
     
@@ -69,7 +69,7 @@ def expansion(labeled_img):
         labeled_img {np.array} -- binary image, uint16 numpy array
     
     Returns:
-        named tuple -- dimensions of the image, airspace and tissue area, and EXP estimate
+        float -- estimate of the Expansion Index
     """
     # calculate the shape of the image and then the total area in pixels
     x, y = labeled_img.shape

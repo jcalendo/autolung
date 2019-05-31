@@ -2,14 +2,10 @@
 
 (c) 2019 Gennaro Calendo, Laboratory of Marla R. Wolfson, MS, PhD at Lewis Katz School of Medicine at Temple University
 
-Controls the main app and gui
+Controls the main app and gui for the autloung program
 """
 from gooey import Gooey
 from gooey import GooeyParser
-import matplotlib.pyplot as plt
-import matplotlib
-import skimage.io
-import numpy as np
 
 from load_config import load_settings
 from processing import process
@@ -32,14 +28,14 @@ def process_dataset(images, preview, **parameters):
     data = []
     num_images = len(images)
     for i, img in enumerate(images, start=1):
-        print("Processing image {}/{}...".format(i, num_images))
-        print("Processing {}...".format(img))
+        print(f"Processing image {i}/{num_images}...")
+        print(f"Processing {img}...")
         p = process(img, preview, **parameters)
         print("Done.\n")
-        print("Measuring airspace statistics on {}...".format(img))
+        print(f"Measuring airspace statistics on {img}...")
         d = measure_all(p, **parameters)
         print("Done.\n")
-        print("Extracting metadata from {}...".format(img))
+        print(f"Extracting metadata from {img}...")
         md = extract_metadata(img, **parameters)
         print("Done.\n")
 

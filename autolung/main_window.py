@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(742, 481)
+        MainWindow.resize(742, 754)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.config_button = QtWidgets.QPushButton(self.centralwidget)
@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
         self.no_radioButton.setGeometry(QtCore.QRect(430, 250, 41, 17))
         self.no_radioButton.setObjectName("no_radioButton")
         self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
-        self.progressBar.setGeometry(QtCore.QRect(30, 380, 691, 51))
+        self.progressBar.setGeometry(QtCore.QRect(30, 650, 691, 51))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
         self.line = QtWidgets.QFrame(self.centralwidget)
@@ -109,6 +109,9 @@ class Ui_MainWindow(object):
         self.quit_button = QtWidgets.QPushButton(self.centralwidget)
         self.quit_button.setGeometry(QtCore.QRect(380, 320, 341, 41))
         self.quit_button.setObjectName("quit_button")
+        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.plainTextEdit.setGeometry(QtCore.QRect(30, 370, 691, 261))
+        self.plainTextEdit.setObjectName("plainTextEdit")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 742, 21))

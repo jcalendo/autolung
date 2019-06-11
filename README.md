@@ -8,5 +8,5 @@ PyQt5 version of the autolung app
 
 
 TODO:
- - Add stdout/stderr output to the MainWindow
- - apply proper backend for matplotlib figures
+ - Add menu options
+ - add help dialogs

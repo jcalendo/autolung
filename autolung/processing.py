@@ -158,7 +158,7 @@ def process_img(img, preview, **kwargs):
     Returns:
         ndarray -- Labeled array, where all connected regions are assigned the same integer value
     """
-    print("Converting image to Grayscale...")
+    print("Converting image to grayscale...")
     grey = convert_to_grey(img)
     print("Enhancing contrast...")
     grey_scaled = enhance_contrast(grey)
@@ -193,12 +193,10 @@ def process_all(images, preview, **parameters):
         img_name = Path(img).name
 
         print(f"Processing image {i}/{num_images}...")
-        print(f"Processing {img_name}...")
+        print(f"{img_name}...")
         p = process_img(img, preview, **parameters)
-        print("Done.\n")
         print(f"Measuring airspace statistics on {img_name}...")
         d = measure_all(p, **parameters)
-        print("Done.\n")
         print(f"Extracting metadata from {img_name}...")
         md = extract_metadata(img, **parameters)
         print("Done.\n")

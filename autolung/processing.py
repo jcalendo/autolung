@@ -175,33 +175,3 @@ def process_img(img, preview, **kwargs):
         pass
 
     return labeled
-
-
-def process_all(images, preview, **parameters):
-    """Perform processing steps on all images
-    
-    Arguments:
-        images {list} -- list of image paths to be processed
-        preview {str} -- "Yes" or "No" choice to preview processing steps
-    
-    Returns:
-        list -- list of the associated data (dictionaries) for each image
-    """
-    data = []
-    num_images = len(images)
-    for i, img in enumerate(images, start=1):
-        img_name = Path(img).name
-
-        print(f"Processing image {i}/{num_images}...")
-        print(f"{img_name}...")
-        p = process_img(img, preview, **parameters)
-        print(f"Measuring airspace statistics on {img_name}...")
-        d = measure_all(p, **parameters)
-        print(f"Extracting metadata from {img_name}...")
-        md = extract_metadata(img, **parameters)
-        print("Done.\n")
-
-        results = {**md, **d}
-        data.append(results)
-
-    return data

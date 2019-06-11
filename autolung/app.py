@@ -18,6 +18,13 @@ from load_config import load_settings
 from export import write_output
 
 
+class Stream(QObject):
+    newText = pyqtSignal(str)
+
+    def write(self, text):
+        self.newText.emit(str(text))
+
+
 class ProcessingThread(QThread):
     def __init__(self, imgs_dir, conf_file, prv_choice, outdir):
         QThread.__init__(self)
@@ -55,6 +62,18 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.no_radioButton.toggled.connect(lambda: self.btnState(self.ui.no_radioButton))
         self.ui.run_button.clicked.connect(self.startAnalysis)
         self.ui.quit_button.clicked.connect(self.close)
+
+        sys.stdout = Stream(newText=self.onUpdateText)
+
+    def onUpdateText(self, text):
+        cursor = self.ui.textBrowser.textCursor()
+        cursor.movePosition(QtGui.QTextCursor.End)
+        cursor.insertText(text)
+        self.ui.textBrowser.setTextCursor(cursor)
+        self.ui.textBrowser.ensureCursorVisible()
+
+    def __del__(self):
+        sys.stdout = sys.__stdout__
 
     def getImageDirectory(self):
         """Select the images directory and set text in img_dir text field"""

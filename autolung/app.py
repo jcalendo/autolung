@@ -7,7 +7,7 @@ Controls the main app and gui for the autloung program
 import sys
 
 from PyQt5 import QtWidgets, QtGui
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog, QMessageBox
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 
 from main_window import Ui_MainWindow
@@ -42,6 +42,7 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle("Autolung")
 
         self.img_dir = ""
         self.config_file = ""
@@ -80,16 +81,18 @@ class MainWindow(QtWidgets.QMainWindow):
             if btn.isChecked() == True:
                 self.preview_choice = btn.text()
     
-    def startAnalysis(self):
-        """Begin image processing"""
-        self.get_thread = ProcessingThread(self.img_dir, self.config_file, self.preview_choice, self.out_dir)
-        self.get_thread.start()
+    def done(self):
+        QMessageBox.information(self, "Success!", "Finished Processing!")
     
-        
+    def startAnalysis(self):
+        """Open a new window and thread to begin image processing"""
+        self.processing_thread = ProcessingThread(self.img_dir, self.config_file, self.preview_choice, self.out_dir)
+        self.processing_thread.finished.connect(self.done)
+        self.processing_thread.start()
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    app.setApplicationName("Autolung")
     app.setStyle('fusion')
 
     application = MainWindow()

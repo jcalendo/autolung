@@ -15,8 +15,11 @@ from skimage.color import rgb2gray
 from skimage.filters import threshold_local
 from skimage.morphology import remove_small_holes, remove_small_objects, label
 from skimage.exposure import equalize_adapthist
+
 import matplotlib.pyplot as plt
+
 import numpy as np
+
 from pathlib import Path
 
 from measure import measure_all
@@ -101,8 +104,10 @@ def label_image(filled_binary_img):
     return label(filled_binary_img)
 
 
-def preview_process(grey, thresh, filled, labeled):
-    """If "Yes", preview the image processing steps for QC
+def preview_process(img, grey, thresh, filled, labeled, **kwargs):
+    """If "Yes", save the image processing steps for QC
+
+    By default, saves the image in the same location as the original image in a new folder called QC
     
     Arguments:
         grey {ndarray} -- grayscale image
@@ -110,6 +115,12 @@ def preview_process(grey, thresh, filled, labeled):
         filled {ndarray} -- binary image with holes filled
         labeled {ndarray} -- labelled image
     """
+    # create new folder 'QC' in images dir and save preview figure as jpg files
+    p = Path(img)
+    Path(p.parent.joinpath('QC')).mkdir(parents=True, exist_ok=True)
+    savename = str(p.stem) + ".jpg"
+    save_loc = p.parent.joinpath('QC', savename)
+
     # Create mask for the labeled image
     l = np.ma.masked_where(labeled < 0.05, labeled)
     cmap_l = plt.cm.prism
@@ -127,7 +138,12 @@ def preview_process(grey, thresh, filled, labeled):
     axarr[1, 1].set_title('Connected Components - Airspaces Colored')
 
     plt.tight_layout()
-    plt.show()
+    figure = plt.gcf()
+    figure.set_size_inches(10, 8)
+
+    print(f"Saving QC image to {save_loc}...")
+   
+    plt.savefig(save_loc, dpi=800)
 
 
 def process_img(img, preview, **kwargs):
@@ -136,7 +152,7 @@ def process_img(img, preview, **kwargs):
     The final labelled image is used as input for the measurements module.
     
     Arguments:
-        img {ndarray} -- RGB image
+        img {str} -- Path to image to be processed
         preview {str} -- "Yes" or "No" if preview should be displayed
     
     Returns:
@@ -154,8 +170,7 @@ def process_img(img, preview, **kwargs):
     labeled = label_image(filled)
 
     if preview == "Yes":
-        print("Open Preview - Exit preview window to continue")
-        preview_process(grey_scaled, binary, filled, labeled)
+        preview_process(img, grey_scaled, binary, filled, labeled)
     else:
         pass
 

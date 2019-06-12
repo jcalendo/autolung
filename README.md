@@ -5,8 +5,3 @@
 PyQt5 version of the autolung app
 
 ![Main Window](docs/images/pyqt5_main_window.JPG)
-
-
-TODO:
- - Add menu options
- - add help dialogs

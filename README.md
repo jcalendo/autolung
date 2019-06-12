@@ -87,4 +87,4 @@ First sheet, *Raw_Data*. All rows represent each image processed.
 
 Second Sheet, *Grouped_Averages*. Rows are now grouped.
 
-![Sheet_2](docs\images\sheet_2.JPG)
+![Sheet_2](docs/images/sheet_2.JPG)

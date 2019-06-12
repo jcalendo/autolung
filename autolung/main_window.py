@@ -157,8 +157,8 @@ class Ui_MainWindow(object):
         self.run_button.setText(_translate("MainWindow", "Start Analysis"))
         self.quit_button.setText(_translate("MainWindow", "Quit"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
-        self.menuHelp.setTitle(_translate("MainWindow", "Help"))
+        self.menuHelp.setTitle(_translate("MainWindow", "About"))
         self.actionClose.setText(_translate("MainWindow", "Close"))
-        self.actionHelp.setText(_translate("MainWindow", "Help"))
+        self.actionHelp.setText(_translate("MainWindow", "About"))
 
 

@@ -364,7 +364,7 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>About</string>
     </property>
     <addaction name="actionHelp"/>
    </widget>
@@ -379,7 +379,7 @@
   </action>
   <action name="actionHelp">
    <property name="text">
-    <string>Help</string>
+    <string>About</string>
    </property>
   </action>
  </widget>

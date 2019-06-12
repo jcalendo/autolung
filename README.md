@@ -83,8 +83,8 @@ Every column includes comments describing the variable. The columns (variables) 
 
 First sheet, *Raw_Data*. All rows represent each image processed.
 
-![Sheet_1](docs/images/sheet_1.JPG)
+![Sheet_1](docs/images/raw_data.JPG)
 
 Second Sheet, *Grouped_Averages*. Rows are now grouped.
 
-![Sheet_2](docs/images/sheet_2.JPG)
+![Sheet_2](docs/images/grouped_averages.JPG)

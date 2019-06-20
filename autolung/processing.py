@@ -10,17 +10,16 @@ thresholded using a local thresholding method ('mean'). Small holes in the thres
 the filled image is then used as inout for connected component labelling. Measurements are then made on the 
 labeled image.
 """
+from pathlib import Path
+import warnings
+
 from skimage import io
 from skimage.color import rgb2gray
 from skimage.filters import threshold_local
 from skimage.morphology import remove_small_holes, remove_small_objects, label
 from skimage.exposure import equalize_adapthist
-
 import matplotlib.pyplot as plt
-
 import numpy as np
-
-from pathlib import Path
 
 from measure import measure_all
 from metadata import extract_metadata
@@ -37,6 +36,7 @@ def convert_to_grey(img):
     """
     orig = io.imread(img)
     grey = rgb2gray(orig)
+
     return grey
 
 
@@ -49,7 +49,11 @@ def enhance_contrast(grey_img):
     Returns:
         ndarray -- grayscale image with enhanced contrast
     """
-    return equalize_adapthist(grey_img)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        enhanced = equalize_adapthist(grey_img)
+
+    return enhanced
 
 
 def binarize(grey_img, **kwargs):
@@ -136,7 +140,7 @@ def preview_process(img, grey, thresh, filled, labeled, **kwargs):
     axarr[0, 1].set_title('Thresholded Image')
     axarr[1, 0].set_title('Filled Image')
     axarr[1, 1].set_title('Connected Components - Airspaces Colored')
-
+    
     plt.tight_layout()
     figure = plt.gcf()
     figure.set_size_inches(10, 8)

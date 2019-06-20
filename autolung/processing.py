@@ -105,7 +105,7 @@ def label_image(filled_binary_img):
     Returns:
         ndarray -- Labeled array, where all connected regions are assigned the same integer value
     """
-    return label(filled_binary_img)
+    return label(filled_binary_img, connectivity=2)
 
 
 def preview_process(img, grey, thresh, filled, labeled, **kwargs):

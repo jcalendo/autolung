@@ -4,9 +4,10 @@
 
 Main 'measurements' file. Controls all measurements performed on a given image. 
 """
+from collections import namedtuple
+
 import numpy as np
 from scipy import stats
-from collections import namedtuple
 from skimage.measure import regionprops
 
 

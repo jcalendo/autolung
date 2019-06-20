@@ -7,6 +7,7 @@ Collect metadata information from the image filenames and config file.
 NOTE: filename format is specific to our lab and follows the convention "[Animal_ID]-[Location]-[Image_Number].tif"
 """
 import os
+
 import numpy as np
 
 

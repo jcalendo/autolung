@@ -4,9 +4,10 @@
 
 Collects metadata and measurements and writes to Excel.
 """
-import pandas as pd
 import time
 import os
+
+import pandas as pd
 
 
 def group_and_summarize(data_list):

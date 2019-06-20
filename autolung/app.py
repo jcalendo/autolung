@@ -5,7 +5,6 @@
 Controls the main app and gui for the autloung program
 """
 import sys
-
 from pathlib import Path
 
 from PyQt5 import QtWidgets, QtGui
@@ -13,7 +12,6 @@ from PyQt5.QtWidgets import QFileDialog, QMessageBox
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 
 from main_window import Ui_MainWindow
-
 from load_images import collect
 from load_config import load_settings
 from export import write_output

@@ -148,6 +148,7 @@ def preview_process(img, grey, thresh, filled, labeled, **kwargs):
     print(f"Saving QC image to {save_loc}...")
    
     plt.savefig(save_loc, dpi=800)
+    plt.close()
 
 
 def process_img(img, preview, **kwargs):

@@ -175,7 +175,5 @@ def process_img(img, preview, **kwargs):
 
     if preview == "Yes":
         preview_process(img, grey_scaled, binary, filled, labeled)
-    else:
-        pass
 
     return labeled

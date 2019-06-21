@@ -39,6 +39,7 @@ Scale: 2.0969
 [Threshold_Params]
 Block_Size: 251
 Constant: 0
+Method: mean
 
 [Morphology_Params]
 Min_Alveolar_Size: 500
@@ -47,7 +48,7 @@ Max_Speckle_Size: 100
 
 - `Species`, `Magnification`, and `Fixed_Field` will all be used as grouping variables and do not affect the image processing. Here, `Magnification` represents the objective used and `Fixed_Field` is the size of the image in pixels.
 - `Scale` is a very important variable. `Scale` **must be set in px/um** for the final measurements to be calibrated properly.
-- `Block_Size` and `Constant` are used in the thresholding steps of the image processing. Their values are pixels. If you are working with new images and are finding that there is a lot of 'speckling' in your airspaces, try increasing the `Block_Size` first.
+- `Block_Size`, `Constant` and `Method` are used in the thresholding steps of the image processing. `Block_Size` values **must be an odd number**. `Constant` values can range from 0-Inf (although usually set at 0 or 1) and `Method` must be one of ('mean', 'median', or 'gaussian').
 - `Min_Alveolar_Size` is the size, in pixels, of an airspace. Any value under this number will be excluded from the measurements. `Max_Speckle_Size` is the size of abberations or speckles, in pixels, present in airspaces that should be removed. Speckling smaller than this value will be removed from airspaces.
 
 ## Output File

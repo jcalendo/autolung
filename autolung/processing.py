@@ -70,7 +70,9 @@ def binarize(grey_img, **kwargs):
     """
     block_size = kwargs.get('block_size')
     constant = kwargs.get('constant')
-    local_thresh = threshold_local(grey_img, block_size, method='mean', offset=constant)
+    met = kwargs.get('method')
+
+    local_thresh = threshold_local(grey_img, block_size, method=met, offset=constant)
     binary_local = grey_img > local_thresh
 
     return binary_local
@@ -105,7 +107,7 @@ def label_image(filled_binary_img):
     Returns:
         ndarray -- Labeled array, where all connected regions are assigned the same integer value
     """
-    return label(filled_binary_img, connectivity=2)
+    return label(filled_binary_img)
 
 
 def preview_process(img, grey, thresh, filled, labeled, **kwargs):
@@ -127,7 +129,7 @@ def preview_process(img, grey, thresh, filled, labeled, **kwargs):
 
     # Create mask for the labeled image
     l = np.ma.masked_where(labeled < 0.05, labeled)
-    cmap_l = plt.cm.prism
+    cmap_l = plt.cm.get_cmap('prism')
     cmap_l.set_bad(color = 'black')
 
     _, axarr = plt.subplots(2,2)
